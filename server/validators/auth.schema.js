@@ -11,3 +11,5 @@ export const authSchema = z.object({
       "Password must include at least one letter, one number, and one special character",
     ),
 });
+
+export const cardIdSchema = z.object({ id: z.string().min(1) });

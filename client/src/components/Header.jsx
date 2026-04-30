@@ -1,12 +1,11 @@
 import { useState } from "react";
 import heroImage from "../assests/hero.png";
+import { useAuth } from "../hooks/useAuth";
 
-const Header = ({ onAddClick, onOpenAuthModal, fetchAllCars }) => {
-  const token = localStorage.getItem("token");
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    fetchAllCars();
+const Header = ({ onAddClick, onOpenAuthModal }) => {
+  const { logout, token } = useAuth();
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -17,7 +16,7 @@ const Header = ({ onAddClick, onOpenAuthModal, fetchAllCars }) => {
         </div>
         <div className="nav-actions">
           {token && (
-            <button type="button" className="add-btn" onClick={logout}>
+            <button type="button" className="add-btn" onClick={handleLogout}>
               Logout
             </button>
           )}

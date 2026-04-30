@@ -60,7 +60,6 @@ const App = () => {
       <Header
         onAddClick={() => setIsOpen(true)}
         onOpenAuthModal={handleOpenAuthModal}
-        fetchAllCars={fetchAllCars}
       />
 
       <main>

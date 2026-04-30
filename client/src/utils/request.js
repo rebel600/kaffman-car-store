@@ -20,12 +20,9 @@ export const request = async (method, url, data) => {
   if (data && method !== "GET") {
     options.body = JSON.stringify(data);
   }
-  console.log("response", `${API_URL}`, `${url}`)
 
   try {
     const response = await fetch(`${API_URL}${url}`, options);
-
-    console.log("__response__", response)
 
 
     if (!response.ok) {

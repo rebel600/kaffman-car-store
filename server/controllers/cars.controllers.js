@@ -19,11 +19,11 @@ const getAllCars = async (req, res) => {
 
 const getCarById = async (req, res) => {
   try {
-    const carId = req.params.id;
+    const { id } = req.validatedData;
     const getCar = await db
       .select()
       .from(cars)
-      .where(eq(cars.id, Number(carId)));
+      .where(eq(cars.id, Number(id)));
 
     if (getCar.length === 0) {
       return res.status(400).json({ message: "Car not found." });

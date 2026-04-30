@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { login, register } from "../services";
+import { useAuth } from "../hooks/useAuth";
 
 const Auth = ({ onOpenAuth, onClose, setOnOpenAuth }) => {
+  const { login: userLogin } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -44,9 +46,6 @@ const Auth = ({ onOpenAuth, onClose, setOnOpenAuth }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setError(validate(formData));
-    if (Object.keys(error).length === 0) {
-      console.log(formData);
-    }
 
     if (onOpenAuth.modalType === "register") {
       await register(formData.email, formData.password);
@@ -56,7 +55,7 @@ const Auth = ({ onOpenAuth, onClose, setOnOpenAuth }) => {
       const response = await login(formData.email, formData.password);
 
       if (response) {
-        localStorage.setItem("token", response.token);
+        userLogin(response.token);
       }
     }
     onClose();

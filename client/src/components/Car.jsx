@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const Car = ({
   id,
@@ -10,7 +11,8 @@ const Car = ({
   onEditOpen,
   handleDelete,
 }) => {
-  const tocken = localStorage.getItem("token");
+  const { token } = useAuth();
+  
   return (
     <li className="car-card">
       <div className="car-image-container">
@@ -28,7 +30,7 @@ const Car = ({
             <span className="spec-value">{year}</span>
           </div>
           {/* Add more specs here like Fuel, Mileage etc */}
-          {tocken && (
+          {token && (
             <div className="car-actions">
               <span onClick={() => onEditOpen({ isEditing: true, carId: id })}>
                 ✏️

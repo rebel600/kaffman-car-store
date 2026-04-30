@@ -40,8 +40,6 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log("Login payload:", { email, password });
-
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password required" });
     }
@@ -54,8 +52,6 @@ export const login = async (req, res) => {
 
     const user = userResult[0];
 
-    console.log("Fetched user:", user);
-
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
@@ -66,8 +62,6 @@ export const login = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-
-    console.log("isMatch", isMatch);
 
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
