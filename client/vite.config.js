@@ -7,7 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5713",
+        // target: "http://localhost:5713",
+        target: "https://kaffman-car-store.onrender.com",
         changeOrigin: true,
       }
     },
