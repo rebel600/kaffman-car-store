@@ -1,6 +1,6 @@
 import express from "express";
 import router from "#routes/index.js";
-import { corsMiddleware } from "#middlewares/cors.middleware.js";
+import { corsMiddleware } from "#middlewares/cors.js";
 
 const app = express();
 
