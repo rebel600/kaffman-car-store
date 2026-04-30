@@ -8,7 +8,7 @@ import {
   Footer,
   Header,
 } from "./components";
-import { getAllCars } from "./services";
+import { getCars } from "./services";
 
 const App = () => {
   const [cars, setCars] = useState([]);
@@ -23,7 +23,7 @@ const App = () => {
   const fetchAllCars = async () => {
     setLoading(true);
     try {
-      const response = await getAllCars();
+      const response = await getCars();
       if (response && Array.isArray(response)) {
         setCars(response);
       } else {

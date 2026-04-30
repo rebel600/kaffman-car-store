@@ -7,7 +7,7 @@
   "type": "module",
   "main": "index.js",
   "imports": {
-     "#*": "./*"
+    "#*": "./*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,7 +19,8 @@
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "express": "^5.2.1",
-    "ws": "^8.20.0"
+    "ws": "^8.20.0",
+    "zod": "^4.4.1"
   },
   "devDependencies": {
     "drizzle-kit": "^0.31.10"

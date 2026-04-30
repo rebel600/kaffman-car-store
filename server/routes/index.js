@@ -1,20 +1,20 @@
-import { eq } from "drizzle-orm";
 import express from "express";
-import { getAllCars, getCarById, addCar, updateCar, deleteCar } from "#controllers/index.js";
+import {
+  getAllCars,
+  getCarById,
+  addCar,
+  updateCar,
+  deleteCar,
+} from "#controllers/index.js";
+import { validate } from "#middlewares/validate.js";
+import { carSchema } from "#validators/car.schema.js";
 
 const router = express.Router();
 
-router.get("/checkServer", (req, res) => {
-  res.json({ message: "Hello from the backend!" });
-});
-
-router.get("/getAllCars", getAllCars);
-router.get("/getCarById/:id", getCarById);
-
-router.post("/addCar", addCar);
-
-router.patch("/updateCarById/:id", updateCar);
-
-router.delete("/deleteCarById/:id", deleteCar);
+router.get("/", getAllCars);
+router.get("/:id", getCarById);
+router.post("/", validate(carSchema), addCar);
+router.patch("/:id", validate(carSchema.partial()), updateCar);
+router.delete("/:id", deleteCar);
 
 export default router;

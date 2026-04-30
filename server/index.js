@@ -7,7 +7,7 @@ const app = express();
 app.use(corsMiddleware);
 
 app.use(express.json());
-app.use("/api/v1",router);
+app.use("/api/v1/cars",router);
 
 const PORT = process.env.PORT || 5000;
 

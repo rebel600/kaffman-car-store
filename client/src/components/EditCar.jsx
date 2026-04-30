@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FormSkeleton } from "./index";
-import { getCarById, updateCarById } from "../services";
+import { getCar, updateCar } from "../services";
 
 const EditCar = ({ carId, onClose, onCarUpdated }) => {
   const initialFormData = {
@@ -69,7 +69,7 @@ const EditCar = ({ carId, onClose, onCarUpdated }) => {
   const handleUpdateCar = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      await updateCarById(formData, carId);
+      await updateCar(carId, formData);
       setFormData(initialFormData);
       onCarUpdated();
     }
@@ -78,7 +78,7 @@ const EditCar = ({ carId, onClose, onCarUpdated }) => {
   const fetchCarDetails = async (id) => {
     setLoading(true);
     try {
-      const response = await getCarById(id);
+      const response = await getCar(id);
       if (response) {
         setFormData({
           make: response.make || "",

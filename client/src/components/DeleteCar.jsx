@@ -1,10 +1,10 @@
 import React from "react";
-import { deleteCarById } from "../services";
+import { deleteCar } from "../services";
 const DeleteCar = ({ carId, onClose, onCarDeleted }) => {
   const handleDelete = async (e, id) => {
     e.preventDefault();
     try {
-      await deleteCarById(id);
+      await deleteCar(id);
       onCarDeleted();
     } catch (error) {
       console.error("Error deleting car:", error);
