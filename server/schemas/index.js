@@ -18,3 +18,10 @@ export const cars = pgTable("cars", {
   ),
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  email: varchar("email").notNull().unique(),
+  password: varchar("password").notNull(),
+});

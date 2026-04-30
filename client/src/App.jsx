@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import {
+  Header,
+  Auth,
   Car,
   CardSkeleton,
   AddCar,
   EditCar,
   DeleteCar,
   Footer,
-  Header,
 } from "./components";
 import { getCars } from "./services";
 
@@ -19,6 +20,17 @@ const App = () => {
     isDeleting: false,
     carId: null,
   });
+  const [onOpenAuth, setOnOpenAuth] = useState({
+    isOpen: false,
+    modalType: null,
+  });
+
+  const handleOpenAuthModal = () => {
+    setOnOpenAuth({
+      isOpen: true,
+      modalType: "login",
+    });
+  };
 
   const fetchAllCars = async () => {
     setLoading(true);
@@ -45,7 +57,11 @@ const App = () => {
 
   return (
     <div>
-      <Header onAddClick={() => setIsOpen(true)} />
+      <Header
+        onAddClick={() => setIsOpen(true)}
+        onOpenAuthModal={handleOpenAuthModal}
+        fetchAllCars={fetchAllCars}
+      />
 
       <main>
         <div className="main-header">
@@ -59,6 +75,14 @@ const App = () => {
             </span> */}
           </div>
         </div>
+
+        {onOpenAuth.isOpen && (
+          <Auth
+            onOpenAuth={onOpenAuth}
+            onClose={() => setOnOpenAuth({ isOpen: false, modalType: null })}
+            setOnOpenAuth={setOnOpenAuth}
+          />
+        )}
 
         {isOpen && (
           <AddCar onClose={() => setIsOpen(false)} onCarAdded={fetchAllCars} />

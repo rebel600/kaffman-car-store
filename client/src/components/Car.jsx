@@ -1,7 +1,16 @@
 import React from "react";
 
-const Car = ({ id, make, model, year, price, imageUrl, onEditOpen, handleDelete }) => {
-  
+const Car = ({
+  id,
+  make,
+  model,
+  year,
+  price,
+  imageUrl,
+  onEditOpen,
+  handleDelete,
+}) => {
+  const tocken = localStorage.getItem("token");
   return (
     <li className="car-card">
       <div className="car-image-container">
@@ -19,10 +28,14 @@ const Car = ({ id, make, model, year, price, imageUrl, onEditOpen, handleDelete 
             <span className="spec-value">{year}</span>
           </div>
           {/* Add more specs here like Fuel, Mileage etc */}
-          <div className="car-actions">
-            <span onClick={() => onEditOpen({ isEditing: true, carId: id })}>✏️</span>
-            <span onClick={() => handleDelete(id)}>❌</span>
-          </div>
+          {tocken && (
+            <div className="car-actions">
+              <span onClick={() => onEditOpen({ isEditing: true, carId: id })}>
+                ✏️
+              </span>
+              <span onClick={() => handleDelete(id)}>❌</span>
+            </div>
+          )}
         </div>
       </div>
     </li>

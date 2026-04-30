@@ -1,5 +1,13 @@
 import { request } from "../utils/request";
 
+export const login = async (email, password) => {
+  return request("POST", "/api/v1/auth/login", { email, password });
+};
+
+export const register = async (email, password) => {
+  return request("POST", "/api/v1/auth/register", { email, password });
+};
+
 export const getCars = async () => {
   return request("GET", "/api/v1/cars");
 };

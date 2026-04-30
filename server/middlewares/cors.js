@@ -1,5 +1,5 @@
 
-export const corsMiddleware = (req, res, next) => {
+export const cors = (req, res, next) => {
   const timeStamp = new Date().toISOString();
   console.log(`[${timeStamp}] ${req.method} ${req.url}`);
 

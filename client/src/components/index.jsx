@@ -1,3 +1,4 @@
+import Auth from "./Auth";
 import Header from "./Header";
 import Car from "./Car";
 import CardSkeleton from "./CardSkeleton";
@@ -6,4 +7,4 @@ import EditCar from "./EditCar";
 import DeleteCar from "./DeleteCar";
 import Footer from "./Footer";
 import FormSkeleton from "./FormSkeleton";
-export { Header,Car, CardSkeleton, AddCar, EditCar, DeleteCar, Footer, FormSkeleton };
+export { Auth, Header,Car, CardSkeleton, AddCar, EditCar, DeleteCar, Footer, FormSkeleton };
