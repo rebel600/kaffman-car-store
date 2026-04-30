@@ -3,7 +3,7 @@ export const corsMiddleware = (req, res, next) => {
   console.log(`[${timeStamp}] ${req.method} ${req.url}`);
 
   // Allow your frontend origin
-  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_DEVELOPMENT_URL || process.env.FRONTEND_PRODUCTION_URL);
+  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_PRODUCTION_URL);
   
   // Allow specific methods
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
