@@ -1,5 +1,3 @@
-import React from "react";
-
 const FormSkeleton = () => {
   return (
     <div className="modal-form skeleton-form">

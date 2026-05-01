@@ -40,12 +40,25 @@ const Auth = ({ onOpenAuth, onClose, setOnOpenAuth }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const updatedData = { ...formData, [name]: value };
+    setFormData(updatedData);
+
+    const errors = validate(updatedData);
+    setError(errors);
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setError(validate(formData));
+    const validationErrors = validate(formData);
+    setError(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    if (!formData.email || !formData.password) {
+      return;
+    }
 
     if (onOpenAuth.modalType === "register") {
       await register(formData.email, formData.password);
@@ -58,6 +71,7 @@ const Auth = ({ onOpenAuth, onClose, setOnOpenAuth }) => {
         userLogin(response.token);
       }
     }
+
     onClose();
   };
 
@@ -100,7 +114,11 @@ const Auth = ({ onOpenAuth, onClose, setOnOpenAuth }) => {
               </div>
 
               <div className="form-actions-row">
-                <button type="submit" className="action-btn">
+                <button
+                  type="submit"
+                  className="action-btn"
+                  disabled={Object.keys(error).length > 0}
+                >
                   Login
                 </button>
                 <p>Don't have an account?</p>
@@ -170,7 +188,11 @@ const Auth = ({ onOpenAuth, onClose, setOnOpenAuth }) => {
               </div>
 
               <div className="form-actions-row">
-                <button type="submit" className="action-btn">
+                <button
+                  type="submit"
+                  className="action-btn"
+                  disabled={Object.keys(error).length > 0}
+                >
                   SignUp
                 </button>
               </div>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import heroImage from "../assests/hero.png";
 import { useAuth } from "../hooks/useAuth";
 
