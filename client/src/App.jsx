@@ -36,23 +36,30 @@ const App = () => {
     setLoading(true);
     try {
       const response = await getCars();
-      if (response && Array.isArray(response)) {
-        setCars(response);
+      if (
+        response &&
+        Array.isArray(response?.cars) &&
+        response?.cars.length > 0
+      ) {
+        setCars(response?.cars);
       } else {
-        console.error("Something went wrong while fetching cars:", response);
+        console.error(
+          "Something went wrong while fetching cars:",
+          response?.message,
+        );
       }
     } catch (error) {
       console.error("Error fetching cars:", error);
     } finally {
       setLoading(false);
-      setIsOpen(false);
-      setOpenEdit({ isEditing: false, carId: null });
-      setOpenDelete({ isDeleting: false, carId: null });
     }
   };
 
   useEffect(() => {
-    fetchAllCars();
+    const loadcars = async () => {
+      await fetchAllCars();
+    };
+    loadcars();
   }, []);
 
   return (

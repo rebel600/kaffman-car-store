@@ -81,11 +81,11 @@ const EditCar = ({ carId, onClose, onCarUpdated }) => {
       const response = await getCar(id);
       if (response) {
         setFormData({
-          make: response.make || "",
-          model: response.model || "",
-          year: response.year || "",
-          price: response.price || "",
-          imageUrl: response.imageUrl || "",
+          make: response.make ?? "",
+          model: response.model ?? "",
+          year: response.year ?? "",
+          price: response.price ?? "",
+          imageUrl: response.imageUrl ?? "",
         });
       }
     } catch (error) {
@@ -96,7 +96,11 @@ const EditCar = ({ carId, onClose, onCarUpdated }) => {
   };
 
   useEffect(() => {
-    fetchCarDetails(carId);
+    const loadCarDetails = async () => {
+      await fetchCarDetails(carId);
+    };
+
+    loadCarDetails();
   }, [carId]);
 
   return (

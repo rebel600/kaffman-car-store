@@ -25,7 +25,7 @@ export const register = async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const user = await db
+  const [user] = await db
     .insert(users)
     .values({
       email,
@@ -33,7 +33,10 @@ export const register = async (req, res) => {
     })
     .returning();
 
-  res.status(201).json({ message: "User registered successfully", user });
+  res.status(201).json({
+    message: "User registered successfully",
+    user: { id: user.id, email: user.email },
+  });
 };
 
 export const login = async (req, res) => {
@@ -75,7 +78,7 @@ export const login = async (req, res) => {
 
     res.json({
       message: "Login successful",
-      token, 
+      token,
     });
   } catch (err) {
     console.error("LOGIN ERROR:", err);

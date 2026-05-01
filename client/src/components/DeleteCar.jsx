@@ -1,4 +1,3 @@
-import React from "react";
 import { deleteCar } from "../services";
 const DeleteCar = ({ carId, onClose, onCarDeleted }) => {
   const handleDelete = async (e, id) => {

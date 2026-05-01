@@ -7,10 +7,10 @@ const getAllCars = async (req, res) => {
     const getAllCars = await db.select().from(cars);
 
     if (getAllCars.length === 0) {
-      return res.status(404).json({ message: "No cars found." });
+      return res.status(200).json({ cars: [], message: "No cars found." });
     }
 
-    res.status(200).json(getAllCars);
+    res.status(200).json({ cars: getAllCars });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Database query failed" + error.message });

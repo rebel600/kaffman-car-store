@@ -63,10 +63,10 @@ const AddCar = ({ onClose, onCarAdded }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      addCar(formData);
+      await addCar(formData);
       setFormData(initialFormData);
       onCarAdded();
       onClose();
