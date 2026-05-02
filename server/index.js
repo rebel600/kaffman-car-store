@@ -1,6 +1,7 @@
 import express from "express";
 import { cors } from "#middlewares/index.js";
 import { authRouter, carsRouter } from "#routes/index.js";
+import { apiLimiter } from "#middlewares/ratelimiter.js";
 
 const app = express();
 
@@ -8,6 +9,7 @@ app.use(express.json());
 
 app.use(cors);
 
+app.use("/api", apiLimiter);
 app.use("/api/v1/cars", carsRouter);
 app.use("/api/v1/auth", authRouter);
 

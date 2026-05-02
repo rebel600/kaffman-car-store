@@ -71,7 +71,11 @@ const EditCar = ({ carId, onClose, onCarUpdated }) => {
     if (validateForm()) {
       await updateCar(carId, formData);
       setFormData(initialFormData);
-      onCarUpdated();
+      const refreshPromise = onCarUpdated();
+      onClose();
+      void refreshPromise?.catch((error) => {
+        console.error("Error refreshing car list:", error);
+      });
     }
   };
 
