@@ -72,6 +72,7 @@ const EditCar = ({ carId, onClose, onCarUpdated }) => {
       await updateCar(carId, formData);
       setFormData(initialFormData);
       onCarUpdated();
+      onClose();
     }
   };
 
